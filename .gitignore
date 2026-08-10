@@ -1,0 +1,10 @@
+/.streamlit/secrets.toml
+/firestore-key.json
+/tmp_credentials.json
+.venv/
+__pycache__/
+*.pyc
+.env
+*.db
+*.sqlite
+*.sqlite3
