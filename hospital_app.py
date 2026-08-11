@@ -41,12 +41,12 @@ if page == "Dashboard":
 
     # Get Doctors
     doctor_response = requests.get(
-        "http://127.0.0.1:8000/doctor"
+        "https://hospital-management-system.fastapicloud.dev/doctor"
     )
 
     # Get Patients
     patient_response = requests.get(
-        "http://127.0.0.1:8000/patient"
+        "https://hospital-management-system.fastapicloud.dev/patient"
     )
 
     if doctor_response.status_code == 200:
@@ -152,7 +152,7 @@ elif page == "Doctors":
             }
 
             response = requests.post(
-                "http://127.0.0.1:8000/doctor",
+                "https://hospital-management-system.fastapicloud.dev/doctor",
                 json=doctor_data
             )
 
@@ -178,7 +178,7 @@ elif page == "Doctors":
     st.subheader("📋 Doctors List")
 
     response = requests.get(
-        "http://127.0.0.1:8000/doctor"
+        "https://hospital-management-system.fastapicloud.dev/doctor"
     )
 
     if response.status_code == 200:
@@ -221,7 +221,7 @@ elif page == "Doctors":
     if st.button("Delete Doctor"):
 
         response = requests.delete(
-            f"http://127.0.0.1:8000/doctor/{doctor_id}"
+            f"https://hospital-management-system.fastapicloud.dev/doctor/{doctor_id}"
         )
 
         if response.status_code == 200:
@@ -304,7 +304,7 @@ elif page == "Patients":
             }
 
             response = requests.post(
-                "http://127.0.0.1:8000/patient",
+                "https://hospital-management-system.fastapicloud.dev/patient",
                 json=patient_data
             )
 
@@ -330,7 +330,7 @@ elif page == "Patients":
     st.subheader("📋 Patients List")
 
     response = requests.get(
-        "http://127.0.0.1:8000/patient"
+        "https://hospital-management-system.fastapicloud.dev/patient"
     )
 
     if response.status_code == 200:
@@ -372,7 +372,7 @@ elif page == "Appointments":
     # =========================
 
     doctor_response = requests.get(
-        "http://127.0.0.1:8000/doctor"
+        "https://hospital-management-system.fastapicloud.dev/doctor"
     )
 
 
@@ -381,7 +381,7 @@ elif page == "Appointments":
     # =========================
 
     patient_response = requests.get(
-        "http://127.0.0.1:8000/patient"
+        "https://hospital-management-system.fastapicloud.dev/patient"
     )
 
 
@@ -519,7 +519,7 @@ elif page == "Appointments":
 
 
             response = requests.post(
-                "http://127.0.0.1:8000/appointment",
+                "https://hospital-management-system.fastapicloud.dev/appointment",
                 json=appointment_data
             )
 
@@ -551,7 +551,7 @@ elif page == "Appointments":
 
 
     response = requests.get(
-        "http://127.0.0.1:8000/appointment"
+        "https://hospital-management-system.fastapicloud.dev/appointment"
     )
 
 
@@ -666,7 +666,7 @@ elif page == "Appointments":
         ):
 
             response = requests.delete(
-                f"http://127.0.0.1:8000/appointment/"
+                f"https://hospital-management-system.fastapicloud.dev/appointment/"
                 f"{selected_appointment}"
             )
 
