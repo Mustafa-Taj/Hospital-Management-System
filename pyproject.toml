@@ -1,4 +1,3 @@
-
 [project]
 name = "hospitalmanagement"
 version = "0.1.0"
@@ -7,14 +6,11 @@ readme = "README.md"
 requires-python = ">=3.11,<3.14"
 
 dependencies = [
-    "fastapi",
-    "uvicorn[standard]",
-    "sqlalchemy",
-    "pydantic"
-]
+    "fastapi[standard]>=0.115.0",
+    "sqlalchemy>=2.0.0",
+    "pydantic>=2.0.0"
 
-[project.scripts]
-hospitalmanagement = "hospitalmanagement.main:app"
+]
 
 [build-system]
 requires = ["uv_build>=0.12.0,<0.13.0"]

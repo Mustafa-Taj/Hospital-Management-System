@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import List
 
+from fastapi import Depends, FastAPI, HTTPException
+from sqlalchemy.orm import Session
+
 from .database import Base, engine, get_db
-from . import schemas, crud
+from . import crud, schemas
 
 
 # =========================================================
@@ -19,12 +20,13 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Hospital Management System",
-    description="Simple FastAPI Project for Hospital Management System Assignment"
+    description="Hospital Management System API",
+    version="1.0.0",
 )
 
 
 # =========================================================
-# HOME ROUTE
+# HOME
 # =========================================================
 
 @app.get("/")
@@ -117,7 +119,6 @@ def add_patient(
     patient: schemas.PatientCreate,
     db: Session = Depends(get_db)
 ):
-    # Check if Doctor exists
     doctor = crud.get_doctor_by_id(
         db=db,
         doctor_id=patient.doctor_id
@@ -271,7 +272,6 @@ def add_appointment(
     appointment: schemas.AppointmentCreate,
     db: Session = Depends(get_db)
 ):
-    # Check if Patient exists
     patient = crud.get_patient_by_id(
         db=db,
         patient_id=appointment.patient_id
@@ -283,7 +283,6 @@ def add_appointment(
             detail="Patient ID does not exist"
         )
 
-    # Check if Doctor exists
     doctor = crud.get_doctor_by_id(
         db=db,
         doctor_id=appointment.doctor_id
@@ -366,7 +365,6 @@ def add_medical_record(
     medical_record: schemas.MedicalRecordCreate,
     db: Session = Depends(get_db)
 ):
-    # Check if Patient exists
     patient = crud.get_patient_by_id(
         db=db,
         patient_id=medical_record.patient_id
@@ -378,7 +376,6 @@ def add_medical_record(
             detail="Patient ID does not exist"
         )
 
-    # Check if Doctor exists
     doctor = crud.get_doctor_by_id(
         db=db,
         doctor_id=medical_record.doctor_id
@@ -422,7 +419,7 @@ def read_medical_record(
     if not medical_record:
         raise HTTPException(
             status_code=404,
-            detail="Medical record not found"
+        detail="Medical record not found"
         )
 
     return medical_record
